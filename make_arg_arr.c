@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_min_loc.c                                     :+:      :+:    :+:   */
+/*   make_arg_arr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sanglee2 <sanglee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/06 01:47:56 by sanglee2          #+#    #+#             */
-/*   Updated: 2023/05/30 21:41:10 by sanglee2         ###   ########.fr       */
+/*   Created: 2023/05/29 21:18:07 by sanglee2          #+#    #+#             */
+/*   Updated: 2023/05/29 22:07:11 by sanglee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
 
-int find_min_loc(t_deq* deq)
+void make_arg_arr(t_deq* deq_a)
 {
-	t_node* temp;
-	int min_a;
-	int min_loc;
-	int cur_loc;
+    deq_a->arr =(int *)malloc(sizeof(int) * deq_a->a_size);
+    if(!deq_a->arr)
+        return ; // 더 관련해서 작업해줄지 말지에 대해 생각
 
-	temp = deq->a_top;
-	min_a = INT_MAX;
-	cur_loc = 0;
+	int i;
+	t_node *temp;
 
-	while (temp)
-	{
-		if (temp->index < min_a)
-		{
-			min_a = temp->index;
-			min_loc = cur_loc;
-		}
-		temp = temp->next;
-		cur_loc++;
-	}
-	return (min_loc);
+	i = 0;
+	temp = deq_a->a_top;
+    while (temp)
+    {
+        deq_a->arr[i++] = temp->content;
+        temp = temp->next;
+    }
 }

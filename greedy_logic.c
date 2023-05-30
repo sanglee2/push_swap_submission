@@ -6,7 +6,7 @@
 /*   By: sanglee2 <sanglee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 18:42:13 by sanglee2          #+#    #+#             */
-/*   Updated: 2023/05/20 19:40:19 by sanglee2         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:39:45 by sanglee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ void act_sort(t_deq *deq_a, t_deq *deq_b, int a_rot, int b_rot)
 	pa(deq_a, deq_b);
 }
 
-void get_rot_count(t_deq* deq_a, t_deq* deq_b)
+void get_rot_count(t_deq* deq_a, t_deq* deq_b, t_node* temp)
 {
-	t_node *temp;
+	temp = deq_b->b_top;
+	
 	int a_loc;
 	int b_loc;
 	int a_rot;
 	int b_rot;
 	int min;
 
-	temp = deq_b->b_top;
 	a_loc = 0;
 	b_loc = 0;
 	min = INT_MAX;
@@ -50,8 +50,5 @@ void get_rot_count(t_deq* deq_a, t_deq* deq_b)
 		}
 		temp = temp->next;
 	}
-	//printf("min 값 : %d\n", min);
-	//printf("a_rot 값 : %d\n", a_rot);
-	//printf("b_rot 값 : %d\n", b_rot);
 	act_sort(deq_a, deq_b, a_rot, b_rot);
 }

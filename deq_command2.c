@@ -6,7 +6,7 @@
 /*   By: sanglee2 <sanglee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:33:31 by sanglee2          #+#    #+#             */
-/*   Updated: 2023/05/27 13:38:22 by sanglee2         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:50:24 by sanglee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void rr(t_deq *deq_a, t_deq* deq_b)
 		return;
 	temp = deq_a->a_top;
 	deq_a->a_top = temp->next;
-	//temp->prev = NULL;
 	deq_a->a_bot->next = temp;
 	temp->prev = deq_a->a_bot;
 	deq_a->a_bot = temp;

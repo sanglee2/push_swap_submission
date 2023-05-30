@@ -6,7 +6,7 @@
 /*   By: sanglee2 <sanglee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 03:54:27 by sanglee2          #+#    #+#             */
-/*   Updated: 2023/05/20 07:32:34 by sanglee2         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:48:07 by sanglee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void sort_two_element_b(t_deq *deq_b)
 {
 	t_node *temp;
 
-	temp = deq_b->b_top;//여기 아래 부등호 inskim이 바꿈. 
+	temp = deq_b->b_top;
 	if (temp->index > temp->next->index)
 		sb(deq_b);
 	return ;
@@ -43,7 +43,6 @@ void sort_three_element(t_deq* deq_a)
 	first = temp->index;
 	second = temp->next->index;
 	third = temp->next->next->index;
-
     if (first > second && third > first)
         sa(deq_a);
     else if (first > second && second > third)
@@ -58,7 +57,6 @@ void sort_three_element(t_deq* deq_a)
         sa(deq_a);
         ra(deq_a);
     }
-    // 2 3 1
     else if (first < second && third < first)
         rra(deq_a);
 }
@@ -73,9 +71,7 @@ void sort_four_element(t_deq* deq_a, t_deq* deq_b)
 
     while (deq_a->a_top->index != min)
 		ra(deq_a);
-	//if (temp->index == min)
 	pb(deq_a, deq_b);
-	//deq_print(deq_b);
     sort_three_element(deq_a);
     pa (deq_a, deq_b);
 }
@@ -89,7 +85,6 @@ void sort_five_element(t_deq* deq_a, t_deq* deq_b)
     temp = deq_a->a_top;
     max = get_max_value(deq_a);
     min = get_min_value(deq_a);
-
 	while (deq_a->a_size > 3)
 	{
 		if (deq_a->a_top->index == max || deq_a->a_top->index == min)
@@ -99,7 +94,6 @@ void sort_five_element(t_deq* deq_a, t_deq* deq_b)
 	}
     sort_three_element(deq_a);
     sort_two_element_b(deq_b);
-    //deq이 빌 때까지 while문을 돌리는 것이 맞는지
     pa (deq_a, deq_b);
     pa (deq_a, deq_b);
 	ra (deq_a);

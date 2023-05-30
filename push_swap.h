@@ -6,7 +6,7 @@
 /*   By: sanglee2 <sanglee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:40:43 by sanglee2          #+#    #+#             */
-/*   Updated: 2023/05/27 22:59:17 by sanglee2         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:32:47 by sanglee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ typedef struct s_deq
 // char	*ft_strjoin(char const *s1, char const *s2);
 // void	ft_free1(char **ret, t_list **lst_fd, ssize_t output, t_list **lst);
 // void	all_free(t_list **lst, char **ret);
+int act_atoi(char *nptr, int sign, int i);
+void make_arg_arr(t_deq* deq_a);
+int check_arg(int ac, char **av);
 char** ft_split(char const *s, char c);
 t_deq* malloc_deq_a(void);
 t_deq* malloc_deq_b(void);
@@ -117,7 +120,7 @@ void    sort(t_deq *deq_a, t_deq *deq_b);
 void deq_print(t_deq* deq);
 int find_min_loc(t_deq* deq);
 void act_sort(t_deq *deq_a, t_deq *deq_b, int a_rot, int b_rot);
-void get_rot_count(t_deq* deq_a, t_deq* deq_b);
+void get_rot_count(t_deq* deq_a, t_deq* deq_b, t_node* temp);
 void iterate_ra(t_deq* deq_a, int a_loc);
 void iterate_rra(t_deq* deq_a, int a_loc);
 void iterate_rb(t_deq* deq_b, int b_loc);

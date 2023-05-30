@@ -6,7 +6,7 @@
 /*   By: sanglee2 <sanglee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:48:05 by sanglee2          #+#    #+#             */
-/*   Updated: 2023/05/29 19:54:33 by sanglee2         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:30:59 by sanglee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ void act_command(t_deq* deq_a, t_deq* deq_b, char *str)
 	else if(ft_strncmp(str,"rrr\n",4) == 0)
 		rrr(deq_a, deq_b);
 	else
-	{
-		write(1, "KO\n", 3);
-		exit(1);
-	}
+		KO();
 }
 
 void ft_checker(t_deq* deq_a, t_deq* deq_b)
@@ -73,72 +70,26 @@ void ft_checker(t_deq* deq_a, t_deq* deq_b)
 		write(1, "OK\n", 3);
 }
 
-
-// void check_leak(void)
-// {
-//     system("leaks a.out");
-// }
-
 int main(int ac, char **av)
 {
-	// deq 구조체를 담는 변수 a, b 인스턴스화
-    // 어떤 자료구조 유리한지 - 선택이유
-
-	//atexit(check_leak);
     t_deq* deq_a;
     t_deq* deq_b;
-	int j = 1;
-
-    // argument 유효성 체크 부분'
-	 if (ac < 2)
-        return (0);
-
-	while (av[j])
-	{
-		if(!*av[j])
-		{
-			ft_error();
-			return(0);
-		}
-		j++;
-	}
-    // if (!*av[1])
-    //     return (0);
+	if (check_arg(ac, av) == 1)
+		return (0);
 	deq_a = parse(ac,av,1);	
     deq_b = malloc_deq_b();
-    // deq_b = NULL;
-
 	if(check_duplicate_arg(deq_a) == 1)
 	{
 		ft_free_deq_a(deq_a);
 		ft_error();
 	}
-
 	deq_a->a_size = get_deq_a_size(deq_a);
-
-    deq_a->arr =(int *)malloc(sizeof(int) * deq_a->a_size);
-
-    int i = 0;
-   
-    t_node *temp = deq_a->a_top;
-    
-    while (temp)
-    {
-        deq_a->arr[i++] = temp->content;
-        temp = temp->next;
-    }
-
+	make_arg_arr(deq_a);
     content_trans_idx(deq_a);
-
-	ft_checker(deq_a, deq_b);
-
 	deq_print(deq_a);
-
+	ft_checker(deq_a, deq_b);
+	deq_print(deq_a);
 	ft_free_deq_a(deq_a);
-    ft_free_deq_b(deq_b);   
-
-	//deq_print(deq_a);
-
-    //system("leaks a.out");
+    ft_free_deq_b(deq_b);  
     return (0);
 }

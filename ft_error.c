@@ -6,14 +6,13 @@
 /*   By: sanglee2 <sanglee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 03:36:04 by sanglee2          #+#    #+#             */
-/*   Updated: 2023/05/26 21:31:32 by sanglee2         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:52:52 by sanglee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
 
-// malloc 끝나면 터지건, 안 터지건 바로 해줘야 하는 free.
 void ft_free(char **arr)
 {
 	int i;
@@ -38,7 +37,6 @@ void ft_free_deq_a(t_deq* deq_a)
 		free(temp);
 	}
 	free(deq_a);
-	//deq_a->a_top->next = NULL;
 }
 
 void ft_free_deq_b(t_deq* deq_b)
@@ -52,11 +50,10 @@ void ft_free_deq_b(t_deq* deq_b)
 		free(temp);
 	}
 	free(deq_b);
-	//deq_b->b_top->next = NULL;
 }
 
 void ft_error(void)
 {
-	write(1, "error\n", 6);
+	write(1, "Error\n", 6);
 	exit(1);
 }

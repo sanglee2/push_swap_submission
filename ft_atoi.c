@@ -6,7 +6,7 @@
 /*   By: sanglee2 <sanglee2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:29:45 by sanglee2          #+#    #+#             */
-/*   Updated: 2023/05/23 21:32:32 by sanglee2         ###   ########.fr       */
+/*   Updated: 2023/05/30 19:22:44 by sanglee2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,11 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_atoi(char *nptr)
+int act_atoi(char *nptr, int sign, int i)
 {
-	size_t			i;
-	int				sign;
 	long long int	num_integer;
-
-	i = 0;
-	sign = 1;
 	num_integer = 0;
-	if (nptr[i] == '-' )
-	{
-		sign = -1;
-		i++;
-	}
-	else if (nptr[i] == '+')
-		i++;
-	if (i == 1 && !ft_isdigit(nptr[1]))
-	{
-		free(nptr);
-		ft_error();
-	}
+	
 	while (nptr[i])
 	{
 		if (!ft_isdigit(nptr[i]))
@@ -60,5 +44,27 @@ int	ft_atoi(char *nptr)
 		free(nptr);
 		ft_error();
 	}
-	return ((int)num_integer);
+	return((int)num_integer);
+}
+
+int	ft_atoi(char *nptr)
+{
+	size_t			i;
+	int				sign;
+
+	i = 0;
+	sign = 1;
+	if (nptr[i] == '-' )
+	{
+		sign = -1;
+		i++;
+	}
+	else if (nptr[i] == '+')
+		i++;
+	if (i == 1 && !ft_isdigit(nptr[1]))
+	{
+		free(nptr);
+		ft_error();
+	}
+	return(act_atoi(nptr, sign, i));
 } 
